@@ -21,6 +21,8 @@
     html {
         font-size: 1em;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100dvh;
+
     }
 
     body,
@@ -49,18 +51,76 @@
         color: var(--text-color);
         background-color: var(--main-bg);
         padding: .75rem;
+        min-height: 100dvh;
     }
 }
 
 @layer layout {
 
 
+
+
+
+
+
+    .layout__header {
+        grid-area: header;
+    }
+
+    .layout__nav {
+        grid-area: nav;
+    }
+    .layout__main {
+        grid-area: main;
+    }
+    .layout__aside {
+        grid-area: aside;
+    }
+    .layout__footer {
+        grid-area: footer;
+    }
+
+    .layout {
+        min-height: calc(100dvh - 2* .75rem);
+        display: grid;
+        gap: 1rem;
+        grid-template-rows: min-content auto min-content;
+        grid-template-areas: 
+            "header"
+            "nav"
+            "main"
+            "aside"
+            "footer";
+    }
+
+
     @media (min-width: 768px) {
+        .layout {
+            grid-template-columns: 1fr 200px;
+            grid-template-areas: 
+                "header header"
+                "main nav"
+                "aside nav"
+                "footer footer";
+        }
+
+        .layout_nav {
+            align-self: start;
+        }
        
     }
     
     @media (min-width: 980px) {
-       
+       .layout {
+            grid-template-columns: 200px;
+            grid-template-areas: 
+                "header header header"
+                "nav main aside"
+                "footer footer footer";
+        }
+        .layout_nav {
+            align-self: initial;
+        }
     }
 }
 
